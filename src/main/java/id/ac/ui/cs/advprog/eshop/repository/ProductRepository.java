@@ -19,9 +19,11 @@ public class ProductRepository {
 
     public Product edit(String id, Product editedProduct) {
         Product updatedProduct = findProductById(id);
+        if (updatedProduct == null) {
+            return null; // If product is not found, return null
+        }
         updatedProduct.setProductName(editedProduct.getProductName());
         updatedProduct.setProductQuantity(editedProduct.getProductQuantity());
-
         return updatedProduct;
     }
 
@@ -29,7 +31,7 @@ public class ProductRepository {
         return productData.stream()
                 .filter(product -> product.getProductId().equals(productId))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Produk tidak ditemukan"));
+                .orElse(null);
     }
 
     public Iterator<Product> findAll() {
