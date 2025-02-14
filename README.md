@@ -1,7 +1,7 @@
 Agus Tini Sridewi / 2306276004 / ADPRO A
 
 <details>
-    <summary><strong> 📌Reflection 1: clean code principles and secure coding practices </strong></summary>
+    <summary><strong> 📌Reflection 1: Clean Code Principles and Secure Coding Practices </strong></summary>
 
 ## Penerapan Clean Code Principles
 ### 1. **Pemisahan Tanggung Jawab (Separation of Concerns)**
@@ -32,7 +32,7 @@ Kode telah dipisahkan ke dalam beberapa lapisan:
       return productData.stream()
           .filter(product -> product.getProductId().equals(productId))
           .findFirst()
-          .orElseThrow(() -> new IllegalArgumentException("Produk tidak ditemukan"));
+          .orElse(null);
   }
   ```
 
@@ -58,3 +58,23 @@ Kode telah dipisahkan ke dalam beberapa lapisan:
 Dengan perbaikan ini, kode lebih bersih, aman, dan efisien. 🚀
 </details>
 
+<details>
+    <summary><strong> 📌Reflection 2: Unit & Functional Testing </strong></summary>
+
+
+### 1. Unit Testing
+- Setelah menulis dan menjalankan Unit Test saya merasa sangat amat terbantu dalam menguji kode guna mendeteksi bug lebih awal.
+Hal ini membuat saya yakin akan fungsionalitas kode saya, sebelum digabungkan dengan fitur lainnya.
+
+- Jumlah unit test bergantung pada kompleksitas kode, tetapi semakin banyak skenario yang diuji semakin baik antisipasi fungsionalitas kode. 
+Maka dari itu, jika ada percabangan dalam kode, setiap cabang perlu diuji, termasuk skenario positif dan negatif, serta pengujian batas untuk menangani input ekstrem.
+
+- 100% Code Coverage bukan berarti tidak Ada bug karena code coverage hanya menunjukkan bahwa semua baris kode telah dieksekusi dalam pengujian, 
+tetapi tidak menjamin logikanya benar. Bug masih bisa terjadi jika pengujian tidak mencakup semua kemungkinan skenario atau jika ada interaksi dengan komponen eksternal seperti database atau API.
+
+### 2. **Refleksi terhadap Functional Test Suite Baru**
+Menambahkan functional test baru tanpa perencanaan dapat menyebabkan duplikasi kode dan menurunkan kualitas kode. 
+Jika setiap test suite memiliki konfigurasi yang sama, lebih baik membuat kelas abstrak atau utility yang dapat digunakan ulang agar kode tetap bersih dan mudah dipelihara.
+Dengan cara ini, pengujian menjadi lebih efisien dan perubahan pada aplikasi lebih mudah dikelola. 
+
+</details>
