@@ -1,6 +1,7 @@
 Agus Tini Sridewi / 2306276004 / ADPRO A
-## ---
-# Reflection 1: clean code principles and secure coding practices
+
+<details>
+    <summary><strong> 📌Reflection 1: clean code principles and secure coding practices </strong></summary>
 
 ## Penerapan Clean Code Principles
 ### 1. **Pemisahan Tanggung Jawab (Separation of Concerns)**
@@ -54,6 +55,6 @@ Kode telah dipisahkan ke dalam beberapa lapisan:
   ```java
   private Map<UUID, Product> productData = new ConcurrentHashMap<>();
   ```
-
 Dengan perbaikan ini, kode lebih bersih, aman, dan efisien. 🚀
+</details>
 
