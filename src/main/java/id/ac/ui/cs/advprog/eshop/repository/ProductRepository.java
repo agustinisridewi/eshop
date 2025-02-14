@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ProductRepository {
@@ -14,25 +15,21 @@ public class ProductRepository {
     private static int idCounter;
 
     public Product create(Product product) {
-        product.setProductId(String.valueOf(idCounter++));
         productData.add(product);
         return product;
     }
 
-    public Product edit(Product updatedProduct) {
-        for (Product product : productData) {
-            if (product.getProductId().equals(updatedProduct.getProductId())) {
-                updatedProduct.setProductId(product.getProductId());
-                int index = productData.indexOf(product);
-                productData.set(index, updatedProduct);
-                return updatedProduct;
-            }
-        }
-        return null;
+    public Product edit(String id, Product editedProduct) {
+        Product updatedProduct = findProductById(id);
+        updatedProduct.setProductName(editedProduct.getProductName());
+        updatedProduct.setProductQuantity(editedProduct.getProductQuantity());
+
+        return updatedProduct;
     }
-    public Product findProductById(String id) {
+
+    public Product findProductById(String productId) {
         for (Product product : productData) {
-            if (product.getProductId().equals(id)) {
+            if(product.getProductId().equals(productId)) {
                 return product;
             }
         }
@@ -42,4 +39,15 @@ public class ProductRepository {
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
+
+    public boolean delete(String id) {
+        for (Product product : productData) {
+            if (product.getProductId().equals(id)) {
+                productData.remove(product);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
