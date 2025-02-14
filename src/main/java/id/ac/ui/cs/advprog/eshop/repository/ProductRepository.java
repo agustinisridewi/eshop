@@ -12,8 +12,6 @@ import java.util.UUID;
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
-    private static int idCounter;
-
     public Product create(Product product) {
         productData.add(product);
         return product;
@@ -28,12 +26,10 @@ public class ProductRepository {
     }
 
     public Product findProductById(String productId) {
-        for (Product product : productData) {
-            if(product.getProductId().equals(productId)) {
-                return product;
-            }
-        }
-        return null;
+        return productData.stream()
+                .filter(product -> product.getProductId().equals(productId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Produk tidak ditemukan"));
     }
 
     public Iterator<Product> findAll() {
