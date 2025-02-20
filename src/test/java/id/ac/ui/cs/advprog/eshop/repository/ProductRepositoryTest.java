@@ -106,15 +106,22 @@ class ProductRepositoryTest {
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100);
         productRepository.create(product);
+        productRepository.delete(product);
 
-        boolean isDeleted = productRepository.delete("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        assertTrue(isDeleted);
+        Iterator <Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
     }
 
     @Test
     void testDeleteProduct_NotFound() {
-        boolean isDeleted = productRepository.delete("non-existent-id");
-        assertFalse(isDeleted);
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.delete(product);
+
+        Iterator <Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
     }
 
 }
