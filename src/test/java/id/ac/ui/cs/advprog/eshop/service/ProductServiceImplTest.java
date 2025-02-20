@@ -31,69 +31,47 @@ class ProductServiceImplTest {
     @Test
     void testCreate() {
         Product product = new Product();
-        product.setProductName("Laptop");
-        product.setProductQuantity(10);
         when(productRepository.create(product)).thenReturn(product);
-
-        Product result = productService.create(product);
-
-        assertNotNull(result);
-        assertEquals("Laptop", result.getProductName());
+        Product createdProduct = productService.create(product);
+        assertEquals(product, createdProduct);
         verify(productRepository, times(1)).create(product);
     }
 
     @Test
     void testFindAll() {
         Product product1 = new Product();
-        product1.setProductName("Laptop");
         Product product2 = new Product();
-        product2.setProductName("Phone");
-        List<Product> productList = Arrays.asList(product1, product2);
-        Iterator<Product> productIterator = productList.iterator();
+        Iterator<Product> iterator = Arrays.asList(product1, product2).iterator();
+        when(productRepository.findAll()).thenReturn(iterator);
 
-        when(productRepository.findAll()).thenReturn(productIterator);
-
-        List<Product> result = productService.findAll();
-
-        assertEquals(2, result.size());
-        assertEquals("Phone", result.get(1).getProductName());
-        verify(productRepository, times(1)).findAll();
+        List<Product> productList = productService.findAll();
+        assertEquals(2, productList.size());
+        assertTrue(productList.contains(product1));
+        assertTrue(productList.contains(product2));
     }
 
     @Test
     void testFindProductById() {
         Product product = new Product();
-        product.setProductName("Laptop");
-        when(productRepository.findProductById(anyString())).thenReturn(product);
-
-        Product result = productService.findProductById("some-id");
-
-        assertNotNull(result);
-        assertEquals("Laptop", result.getProductName());
-        verify(productRepository, times(1)).findProductById(anyString());
+        when(productRepository.findProductById("1")).thenReturn(product);
+        Product foundProduct = productService.findProductById("1");
+        assertEquals(product, foundProduct);
     }
 
     @Test
-    void testEdit() {
-        Product updatedProduct = new Product();
-        updatedProduct.setProductName("Laptop Pro");
-        updatedProduct.setProductQuantity(20);
-        when(productRepository.edit(anyString(), eq(updatedProduct))).thenReturn(updatedProduct);
-
-        Product result = productService.edit("some-id", updatedProduct);
-
-        assertNotNull(result);
-        assertEquals("Laptop Pro", result.getProductName());
-        assertEquals(20, result.getProductQuantity());
-        verify(productRepository, times(1)).edit(anyString(), eq(updatedProduct));
+    void testedit() {
+        Product product = new Product();
+        when(productRepository.edit(product.getProductId(), product)).thenReturn(product);
+        Product editdProduct = productService.edit(product.getProductId(),product);
+        assertEquals(product, editdProduct);
+        verify(productRepository, times(1)).edit(product.getProductId(),product);
     }
 
     @Test
     void testDelete() {
-        doNothing().when(productRepository).delete(anyString());
-
-        assertDoesNotThrow(() -> productService.delete("some-id"));
-
-        verify(productRepository, times(1)).delete(anyString());
+        Product product = new Product();
+        doNothing().when(productRepository).delete(product);
+        productService.delete(product);
+        verify(productRepository, times(1)).delete(product);
     }
 }
