@@ -1,3 +1,5 @@
+
+
 Agus Tini Sridewi / 2306276004 / ADPRO A
 
 # Module 1
@@ -65,18 +67,18 @@ Dengan perbaikan ini, kode lebih bersih, aman, dan efisien. 🚀
 
 ### 1. Unit Testing
 - Setelah menulis dan menjalankan Unit Test saya merasa sangat amat terbantu dalam menguji kode guna mendeteksi bug lebih awal.
-Hal ini membuat saya yakin akan fungsionalitas kode saya, sebelum digabungkan dengan fitur lainnya.
+  Hal ini membuat saya yakin akan fungsionalitas kode saya, sebelum digabungkan dengan fitur lainnya.
 
-- Jumlah unit test bergantung pada kompleksitas kode, tetapi semakin banyak skenario yang diuji semakin baik antisipasi fungsionalitas kode. 
-Maka dari itu, jika ada percabangan dalam kode, setiap cabang perlu diuji, termasuk skenario positif dan negatif, serta pengujian batas untuk menangani input ekstrem.
+- Jumlah unit test bergantung pada kompleksitas kode, tetapi semakin banyak skenario yang diuji semakin baik antisipasi fungsionalitas kode.
+  Maka dari itu, jika ada percabangan dalam kode, setiap cabang perlu diuji, termasuk skenario positif dan negatif, serta pengujian batas untuk menangani input ekstrem.
 
-- 100% Code Coverage bukan berarti tidak Ada bug karena code coverage hanya menunjukkan bahwa semua baris kode telah dieksekusi dalam pengujian, 
-tetapi tidak menjamin logikanya benar. Bug masih bisa terjadi jika pengujian tidak mencakup semua kemungkinan skenario atau jika ada interaksi dengan komponen eksternal seperti database atau API.
+- 100% Code Coverage bukan berarti tidak Ada bug karena code coverage hanya menunjukkan bahwa semua baris kode telah dieksekusi dalam pengujian,
+  tetapi tidak menjamin logikanya benar. Bug masih bisa terjadi jika pengujian tidak mencakup semua kemungkinan skenario atau jika ada interaksi dengan komponen eksternal seperti database atau API.
 
 ### 2. **Refleksi terhadap Functional Test Suite Baru**
-Menambahkan functional test baru tanpa perencanaan dapat menyebabkan duplikasi kode dan menurunkan kualitas kode. 
+Menambahkan functional test baru tanpa perencanaan dapat menyebabkan duplikasi kode dan menurunkan kualitas kode.
 Jika setiap test suite memiliki konfigurasi yang sama, lebih baik membuat kelas abstrak atau utility yang dapat digunakan ulang agar kode tetap bersih dan mudah dipelihara.
-Dengan cara ini, pengujian menjadi lebih efisien dan perubahan pada aplikasi lebih mudah dikelola. 
+Dengan cara ini, pengujian menjadi lebih efisien dan perubahan pada aplikasi lebih mudah dikelola.
 
 </details>
 
@@ -89,21 +91,22 @@ Dengan cara ini, pengujian menjadi lebih efisien dan perubahan pada aplikasi leb
 
 1. UseUtilityClass (EshopApplication.java)
 
-    Strategi -> Menambahkan konstruktor private untuk mencegah instansiasi.
+   Strategi -> Menambahkan konstruktor private untuk mencegah instansiasi.
 2. Unnecessary Imports
 
    Strategi -> Menghapus import yang tidak digunakan di:
 
-   - ProductController.java (Spring annotations)
-   - ProductRepository.java (UUID import)
+  - ProductController.java (Spring annotations)
+  - ProductRepository.java (UUID import)
 3. Unnecessary Modifier (ProductService.java)
 
    Strategi -> Menghapus keyword public yang tidak perlu pada metode dalam interface karena sudah public secara default.
 
 ### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment?
-    
+
 Setelah melihat hasil CI/CD workflows, yang memastikan integrasi dan deployment berjalan otomatis dan efisien, saya percaya kode saya telah memenuhi definisi CI/CD.
 Untuk CI, GitHub Actions digunakan untuk menjalankan test suite dengan Gradle serta melakukan code scanning dengan OSSF Scorecard dan PMD. Hal ini membantu menjaga kualitas kode dan mencegah potensi kesalahan sejak awal.
 Sementara untuk CD, saya memanfaatkan Koyeb yang secara otomatis melakukan deployment setiap kali ada perubahan di branch utama. Dengan dukungan Dockerfile, saya dapat mengatur environment deployment sesuai kebutuhan, memastikan proses rilis berjalan lancar.
 </details>
+
 
