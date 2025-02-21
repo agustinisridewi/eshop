@@ -1,5 +1,6 @@
 Agus Tini Sridewi / 2306276004 / ADPRO A
 
+# Module 1
 <details>
     <summary><strong> 📌Reflection 1: Clean Code Principles and Secure Coding Practices </strong></summary>
 
@@ -78,3 +79,31 @@ Jika setiap test suite memiliki konfigurasi yang sama, lebih baik membuat kelas 
 Dengan cara ini, pengujian menjadi lebih efisien dan perubahan pada aplikasi lebih mudah dikelola. 
 
 </details>
+
+
+# Module 2
+<details>
+    <summary><strong> 📌Reflection:  </strong></summary>
+
+### 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them
+
+1. UseUtilityClass (EshopApplication.java)
+
+    Strategi -> Menambahkan konstruktor private untuk mencegah instansiasi.
+2. Unnecessary Imports
+
+   Strategi -> Menghapus import yang tidak digunakan di:
+
+   - ProductController.java (Spring annotations)
+   - ProductRepository.java (UUID import)
+3. Unnecessary Modifier (ProductService.java)
+
+   Strategi -> Menghapus keyword public yang tidak perlu pada metode dalam interface karena sudah public secara default.
+
+### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment?
+    
+Setelah melihat hasil CI/CD workflows, yang memastikan integrasi dan deployment berjalan otomatis dan efisien, saya percaya kode saya telah memenuhi definisi CI/CD.
+Untuk CI, GitHub Actions digunakan untuk menjalankan test suite dengan Gradle serta melakukan code scanning dengan OSSF Scorecard dan PMD. Hal ini membantu menjaga kualitas kode dan mencegah potensi kesalahan sejak awal.
+Sementara untuk CD, saya memanfaatkan Koyeb yang secara otomatis melakukan deployment setiap kali ada perubahan di branch utama. Dengan dukungan Dockerfile, saya dapat mengatur environment deployment sesuai kebutuhan, memastikan proses rilis berjalan lancar.
+</details>
+
