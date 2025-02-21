@@ -2,6 +2,12 @@
 
 Agus Tini Sridewi / 2306276004 / ADPRO A
 
+[![pmd](https://github.com/agustinisridewi/eshop/actions/workflows/pmd.yml/badge.svg)](https://github.com/agustinisridewi/eshop/actions/workflows/pmd.yml)
+[![Scorecard supply-chain security](https://github.com/agustinisridewi/eshop/actions/workflows/scorecard.yml/badge.svg)](https://github.com/agustinisridewi/eshop/actions/workflows/scorecard.yml)
+[![Continuous Integration (CI)](https://github.com/agustinisridewi/eshop/actions/workflows/ci.yml/badge.svg)](https://github.com/agustinisridewi/eshop/actions/workflows/ci.yml)
+
+🔗 [Link E Shop](https://supporting-gayal-agustinisridewi-336f9427.koyeb.app/) 🔗
+
 # Module 1
 <details>
     <summary><strong> 📌Reflection 1: Clean Code Principles and Secure Coding Practices </strong></summary>
