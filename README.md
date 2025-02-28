@@ -91,7 +91,7 @@ Dengan cara ini, pengujian menjadi lebih efisien dan perubahan pada aplikasi leb
 
 # Module 2
 <details>
-    <summary><strong> 📌Reflection:  </strong></summary>
+    <summary><strong> 📌Reflection  </strong></summary>
 
 ### 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them
 
@@ -115,4 +115,64 @@ Untuk CI, GitHub Actions digunakan untuk menjalankan test suite dengan Gradle se
 Sementara untuk CD, saya memanfaatkan Koyeb yang secara otomatis melakukan deployment setiap kali ada perubahan di branch utama. Dengan dukungan Dockerfile, saya dapat mengatur environment deployment sesuai kebutuhan, memastikan proses rilis berjalan lancar.
 </details>
 
+# Module 3
+<details>
+    <summary><strong> 📌Reflection </strong></summary>
 
+### 1. Explain what principles you apply to your project!
+Dalam proyek ini, saya menerapkan beberapa prinsip dari SOLID untuk meningkatkan kualitas kode, yaitu: 
+1) **Single Responsibility Principle (SRP)**
+
+    Memisahkan class masing-masing controller agar setiap controller memiliki peran yang spesifik dan tidak bercampur dengan tugas lainnya. 
+
+    `HomePageController` bertanggung jawab atas mapping dengan endpoint `/`. 
+
+    `ProductController` bertanggung jawab atas mapping dengan endpoint `/product`. 
+    
+    `CarController` bertanggung jawab atas mapping dengan endpoint `/car`
+
+
+3) **Liskov Substitution Principle (LSP)**
+
+    `CarController` merupakan subclass dari `ProductController` di branch before-solid. Namun, hal ini tidak tepat karena `CarController` memiliki karakteristik yang berbeda dari `ProductController`.
+Karena objek dari superclass tidak dapat digantikan oleh subclass-nya, saya menghapus inheritance (extends) tersebut dan membuat `CarController` berdiri sendiri sebagai class terpisah.
+
+
+3) **Interface Segregation Principle (ISP)**
+   
+    Prinsip ISP sudah diterapkan pada `CarService` karena tugas interface ini sudah terfokus, yaitu operasi CRUD (Create, Read, Update, Delete) untuk Car.
+
+
+5) **Dependency Inversion Principle (DIP)**
+    
+    Di branch before-solid, `CarController` memiliki ketergantungan langsung pada implementasi konkret `CarServiceImpl`, yang bertentangan dengan prinsip DIP. Seharusnya, `CarController` tidak terikat pada detail implementasi tertentu, melainkan pada abstraksi dalam bentuk interface `CarService`.
+    Karena itu, saya mengubah deklarasi variabel carService dalam `CarController`, yang sebelumnya langsung merujuk ke `CarServiceImpl`, menjadi interface `CarService`.
+
+### 2. Explain the advantages of applying SOLID principles to your project with examples.
+Menerapkan prinsip SOLID memberikan berbagai keuntungan, di antaranya:
+
+- Tanggung Jawab yang Jelas: Setiap bagian kode memiliki fungsi spesifik, mengurangi kompleksitas, dan meningkatkan keterbacaan. 
+- Fleksibilitas Sistem: Memungkinkan ekstensi tanpa harus mengubah kode yang sudah ada. 
+- Ketergantungan yang Terorganisir: Mengurangi risiko bug akibat perubahan tidak terduga dan mempermudah pengujian unit secara independen. 
+- Mendukung Skalabilitas: Memastikan kode dapat berkembang tanpa dampak negatif terhadap bagian lain.
+- Modular dan Terstruktur: Memudahkan pemeliharaan dan pengembangan kode di masa depan.
+
+    #### Contoh Penerapan
+    Misalnya, dengan menerapkan **SRP** pada **CarController**, akan lebih mudah menemukan bagian kode yang bertanggung jawab atas mapping endpoint `/car`. Jika tanggung jawab ini digabungkan ke dalam **ProductController**, maka akan lebih sulit ditemukan, terutama oleh anggota tim lain yang membaca kode.
+
+### 3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+Tanpa prinsip SOLID, beberapa masalah dapat muncul, seperti:
+
+- Kode Sulit Dipelihara: Struktur kode yang tidak modular dapat menyebabkan kesulitan dalam memperbaiki dan mengembangkan sistem. 
+- Tanggung Jawab Tidak Jelas: Kelas atau fungsi yang menangani terlalu banyak tugas akan menyebabkan kode sulit dipahami dan diperbaiki. 
+- Ketergantungan yang Kuat: Perubahan pada satu bagian kode dapat berdampak besar pada bagian lain, meningkatkan risiko bug dan kesalahan. 
+- Sulit Diuji: Unit testing menjadi lebih sulit dilakukan karena kode yang tidak terpisah dengan baik. 
+- Kurangnya Skalabilitas: Sistem menjadi lebih sulit untuk dikembangkan seiring bertambahnya fitur karena arsitektur yang tidak fleksibel. 
+- Proses Pengembangan Tidak Efisien: Tanpa prinsip SOLID, kolaborasi antar tim bisa terhambat karena kode yang sulit dipahami dan dimodifikasi.
+    
+    #### Contoh Masalah
+    Jika **SRP** tidak diterapkan dan **CarController** masih digabung dengan **ProductController**, mencari bagian kode yang menangani endpoint `/car` akan menjadi lebih sulit, terutama bagi anggota tim lain yang baru bergabung dengan proyek.
+
+    Jika **LSP** tidak diterapkan dan **CarController** tetap menjadi subclass dari **ProductController**, maka subclass tidak dapat menggantikan superclass dengan baik, menyebabkan ketidakkonsistenan dalam perilaku metode yang dipanggil.
+
+</details>
