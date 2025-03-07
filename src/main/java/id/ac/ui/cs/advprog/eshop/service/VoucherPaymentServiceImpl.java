@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
+import enums.PaymentMethod;
 import enums.PaymentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class VoucherPaymentServiceImpl implements VoucherPaymentService {
 
     @Override
     public Payment createPayment(Order order, Map<String, String> paymentData) {
-        Payment payment = paymentService.addPayment(order, "VOUCHER", paymentData);
+        Payment payment = paymentService.addPayment(order, PaymentMethod.VOUCHER.getValue(), paymentData);
 
         String voucherCode = paymentData.get("voucherCode");
 
