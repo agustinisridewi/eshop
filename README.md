@@ -10,7 +10,7 @@ Agus Tini Sridewi / 2306276004 / ADPRO A
 
 # Module 1
 <details>
-    <summary><strong> 📌Reflection 1: Clean Code Principles and Secure Coding Practices </strong></summary>
+    <summary><strong> 📌Reflection: Refactoring and TDD </strong></summary>
 
 ## Penerapan Clean Code Principles
 ### 1. **Pemisahan Tanggung Jawab (Separation of Concerns)**
@@ -175,4 +175,25 @@ Tanpa prinsip SOLID, beberapa masalah dapat muncul, seperti:
 
     Jika **LSP** tidak diterapkan dan **CarController** tetap menjadi subclass dari **ProductController**, maka subclass tidak dapat menggantikan superclass dengan baik, menyebabkan ketidakkonsistenan dalam perilaku metode yang dipanggil.
 
+</details>
+
+# Module 4: Refactoring and TDD
+<details>
+    <summary><strong> 📌Reflection </strong></summary>
+
+### 1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+Menurut saya, alur TDD yang telah diimplementasikan cukup bermanfaat. TDD membantu saya memastikan kode yang dibuat sesuai spesifikasi dengan terlebih dahulu membuat test yang gagal, kemudian implementasi yang berhasil lolos test, dan akhirnya melakukan refaktor. Namun, ada beberapa 
+hal yang perlu ditingkatkan. Saya perlu lebih fokus pada "behavior" daripada implementasi karena beberapa test terlalu terikat dengan implementasi spesifik. Coverage test juga masih belum mencakup beberapa kasus edge, seperti validasi input yang lebih komprehensif.
+### 2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+Berdasarkan prinsip F.I.R.S.T. (Fast, Independent, Repeatable, Self-validating, Timely), test yang telah dibuat:
+1. Fast: Test berjalan cepat karena menggunakan mocking untuk dependency eksternal.
+2. Independent: Masih ada ketergantungan antar test, terutama pada setup yang sama.
+3. Repeatable: Test bisa dijalankan berulang kali dan memberikan hasil yang sama.
+4. Self-validating: Test sudah otomatis memberikan hasil pass/fail.
+5. Timely: Test dibuat sebelum kode implementasi sesuai alur TDD.
+
+Perbaikan untuk test selanjutnya:
+- Memastikan independensi antar test dengan menghindari shared state.
+- Memperbaiki struktur setup agar lebih fleksibel.
+- Menambahkan test untuk kasus edge dan boundary yang belum tercakup.
 </details>
