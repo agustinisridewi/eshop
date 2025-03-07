@@ -1,4 +1,3 @@
-// src/test/java/enums/PaymentStatusTest.java
 package enums;
 
 import org.junit.jupiter.api.Test;
