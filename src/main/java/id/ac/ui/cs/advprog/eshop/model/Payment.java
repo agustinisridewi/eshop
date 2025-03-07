@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import enums.PaymentMethod;
 import enums.PaymentStatus;
 import lombok.Getter;
 
@@ -16,7 +17,13 @@ public class Payment {
     public Payment(String id, Order order, String method, Map<String, String> paymentData) {
         this.id = id;
         this.order = order;
-        this.method = method;
+
+        if (PaymentMethod.contains(method)) {
+            this.method = method;
+        } else {
+            throw new IllegalArgumentException();
+        }
+
         this.status = PaymentStatus.PENDING.getValue();
         this.paymentData = paymentData;
     }
