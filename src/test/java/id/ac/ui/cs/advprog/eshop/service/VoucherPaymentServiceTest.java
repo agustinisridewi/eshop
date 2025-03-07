@@ -76,7 +76,7 @@ class VoucherPaymentServiceTest {
         assertNotNull(result);
         assertEquals(mockPayment, result);
 
-        verify(paymentService, times(verify(paymentService, times(1)).addPayment(order, "VOUCHER", paymentData);
+        verify(paymentService, times(1)).addPayment(order, "VOUCHER", paymentData);
         verify(paymentService, times(1)).setStatus(mockPayment, PaymentStatus.REJECTED.getValue());
     }
 

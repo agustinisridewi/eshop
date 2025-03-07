@@ -66,6 +66,20 @@ class PaymentRepositoryTest {
     }
 
     @Test
+    void testFindByIdNull() {
+        assertNull(paymentRepository.findById(null));
+    }
+
+    @Test
+    void testFindByIdExists() {
+        paymentRepository.save(payment);
+        Payment found = paymentRepository.findById("payment-123");
+
+        assertNotNull(found);
+        assertEquals(payment, found);
+    }
+
+    @Test
     void testFindAll() {
         paymentRepository.save(payment);
 
@@ -89,4 +103,15 @@ class PaymentRepositoryTest {
         assertTrue(allPayments.contains(payment));
         assertTrue(allPayments.contains(payment2));
     }
+
+    @Test
+    void testFindByIdEmptyRepository() {
+        assertNull(paymentRepository.findById("random-id"));
+    }
+
+    @Test
+    void testFindAllEmptyRepository() {
+        assertTrue(paymentRepository.findAll().isEmpty());
+    }
+
 }
